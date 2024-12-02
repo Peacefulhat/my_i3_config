@@ -36,7 +36,7 @@
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 
-;(column-number-mode (custom-set-variables
+;;(column-number-mode (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
@@ -59,11 +59,38 @@
    '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default))
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
- '(package-selected-packages '(web-mode multiple-cursors magit gruber-darker-theme)))
+ '(package-selected-packages
+   '(company move-text web-mode multiple-cursors magit gruber-darker-theme)))
+
+;; company mode
+(global-company-mode 1)
+;; mulitple cursor
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->")         'mc/mark-next-like-this)
+(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
+(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
+(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 
 
+;; move-text
+(global-set-key (kbd "M-n") 'move-text-down)
+(global-set-key (kbd "M-p") 'move-text-up)
 
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+;; tree-sitter grammer
+(setq treesit-language-source-alist
+      '((c3 "https://github.com/c3lang/tree-sitter-c3")))
 
+;; path to c3-el
+(load "~/c3-ts-mode/c3-ts-mode.el")
+(require 'c3-ts-mode)
+
+(setq c3-ts-mode-indent-offset 2)
+;; Disable highlighting of variables
+(setq c3-ts-mode-highlight-variable nil)
+;; Disable highlighting of members
+(setq c3-ts-mode-highlight-property nil)
+;; Disable highlighting of punctuation
+(setq c3-ts-mode-highlight-punctuation nil)
+;; Disable highlighting of assignments
+(setq c3-ts-mode-highlight-assignment nil)
