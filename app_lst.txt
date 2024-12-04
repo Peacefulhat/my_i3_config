@@ -17,6 +17,9 @@ sddm
 nvidia
 nvidia-settings
 nemo
+bluez
+bluez-utils
+blueman
 gvfs-mtp
 ntfs-3g
 emacs
