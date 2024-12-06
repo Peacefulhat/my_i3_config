@@ -77,20 +77,3 @@
 (global-set-key (kbd "M-n") 'move-text-down)
 (global-set-key (kbd "M-p") 'move-text-up)
 
-;; tree-sitter grammer
-(setq treesit-language-source-alist
-      '((c3 "https://github.com/c3lang/tree-sitter-c3")))
-
-;; path to c3-el
-(load "~/c3-ts-mode/c3-ts-mode.el")
-(require 'c3-ts-mode)
-
-(setq c3-ts-mode-indent-offset 2)
-;; Disable highlighting of variables
-(setq c3-ts-mode-highlight-variable nil)
-;; Disable highlighting of members
-(setq c3-ts-mode-highlight-property nil)
-;; Disable highlighting of punctuation
-(setq c3-ts-mode-highlight-punctuation nil)
-;; Disable highlighting of assignments
-(setq c3-ts-mode-highlight-assignment nil)
