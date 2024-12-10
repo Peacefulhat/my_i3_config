@@ -11,11 +11,12 @@ gst-plugin-pipewire
 wireplumber
 brightnessctl
 flameshsot
-neofetch
+fastfetch
 blender
 sddm
 nvidia
 nvidia-settings
+os-prober
 nemo
 bluez
 bluez-utils
