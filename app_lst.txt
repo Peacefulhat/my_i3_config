@@ -31,4 +31,5 @@ polkit-kde-agent
 ranger
 feh
 dmenu
+btop
 
