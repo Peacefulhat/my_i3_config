@@ -34,3 +34,4 @@ dmenu
 btop
 ufw
 obsidian
+xclip
