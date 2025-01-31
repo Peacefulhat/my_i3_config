@@ -33,3 +33,4 @@ feh
 dmenu
 btop
 ufw
+obsidian
