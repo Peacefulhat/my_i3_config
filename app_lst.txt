@@ -32,4 +32,4 @@ ranger
 feh
 dmenu
 btop
-
+ufw
