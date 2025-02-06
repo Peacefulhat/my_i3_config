@@ -1,0 +1,26 @@
+# auto complete for ido.
+smex
+#rfc: a request for comment, is a formal standards-track document developed in working groups within the Internet Engineering Task Force (IETF).
+
+rfc-mode
+
+# php syntax highlighting.
+php-mode
+
+# auto complete company.
+company
+
+# move block of text in text buffer.
+move-text
+
+# multiple cursor.
+multiple-cursor
+
+# git client 
+magit
+
+# theme 
+gruber-darker-theme
+
+
+
