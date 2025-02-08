@@ -13,7 +13,7 @@ set $win Mod4
 set $alt Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Fira Code 12
+font pango:Fira Code 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -68,7 +68,8 @@ bindsym $win+$alt+c exec code
 bindsym $win+$alt+e exec nemo
 
 # start dmenu (a program launcher)
-bindsym $win+d exec --no-startup-id dmenu_run
+#bindsym $win+d exec --no-startup-id dmenu_run
+bindsym $win+d exec "rofi -modi drun,run -show drun"
 # A more modern dmenu replacement is rofi:
 # bindcode $win+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -199,8 +200,9 @@ bindsym $win+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bindsym Control+Escape bar mode toggle
-bar {   mode hide 
-	      position bottom
+bar {
+      	mode hide 
+        position bottom
         status_command i3status
         modifier none  
   }
@@ -215,8 +217,8 @@ bar {   mode hide
 default_border pixel 2
 
 #gaps outside and inside of windows
-gaps inner 5px
-gaps outer 11px 
+gaps inner 5
+gaps outer 11
 
 #polkit agent
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 & disown

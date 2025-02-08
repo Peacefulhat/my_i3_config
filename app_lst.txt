@@ -30,8 +30,9 @@ neovim
 polkit-kde-agent
 ranger
 feh
-dmenu
 btop
 ufw
 obsidian
 xclip
+qbittorrent
+rofi
