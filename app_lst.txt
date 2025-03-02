@@ -2,7 +2,6 @@ i3
 xorg
 picom
 kitty
-firefox
 pipewire
 pipewire-alsa
 pipewire-audio

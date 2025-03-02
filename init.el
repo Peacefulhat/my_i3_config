@@ -1,3 +1,4 @@
+
 ;;disable tool bar.
 (tool-bar-mode 0)
 
@@ -56,11 +57,13 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
-   '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default))
+   '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
+     default))
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(company move-text web-mode multiple-cursors magit gruber-darker-theme)))
+   '(company gruber-darker-theme magit move-text multiple-cursors
+	     nasm-mode web-mode)))
 
 ;; company mode
 (global-company-mode 1)
@@ -84,3 +87,7 @@
 (global-set-key (kbd "M-n") 'move-text-down)
 (global-set-key (kbd "M-p") 'move-text-up)
 
+
+;; nasm mode for .asm files
+
+(add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
