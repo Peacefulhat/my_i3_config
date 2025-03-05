@@ -1,12 +1,12 @@
 i3
 xorg
-picom
 kitty
 pipewire
 pipewire-alsa
 pipewire-audio
 pipewire-jack
 pipewire-pulse
+firefox
 gst-plugin-pipewire
 wireplumber
 brightnessctl
@@ -35,3 +35,5 @@ obsidian
 xclip
 qbittorrent
 rofi
+7zip
+nasm
