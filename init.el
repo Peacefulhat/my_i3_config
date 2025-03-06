@@ -91,3 +91,7 @@
 ;; nasm mode for .asm files
 
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
+
+;; dired jump key binding
+(global-set-key (kbd "C-c d") 'dired-jump)
+
