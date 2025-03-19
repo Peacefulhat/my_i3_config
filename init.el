@@ -59,11 +59,12 @@
  '(custom-safe-themes
    '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
      default))
- '(display-line-numbers-type 'relative)
+ '(display-line-numbers-type 't);; 't,can be relative or visual for other style of line number type.
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(company gruber-darker-theme magit move-text multiple-cursors
-	     nasm-mode web-mode)))
+   '(company d-mode gruber-darker-theme magit move-text multiple-cursors
+	     nasm-mode php-mode web-mode))
+ '(warning-suppress-types '((native-compiler))))
 
 ;; company mode
 (global-company-mode 1)
@@ -91,7 +92,18 @@
 ;; nasm mode for .asm files
 
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
-
-;; dired jump key binding
+;; dired-jump mode
 (global-set-key (kbd "C-c d") 'dired-jump)
+;;php-mode
+(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 
+(use-package web-mode
+  :ensure t
+  :mode ("\\.blade\\.php\\'" . web-mode)
+  :config
+  (setq web-mode-enable-auto-pairing t
+        web-mode-enable-auto-closing t
+        web-mode-enable-auto-quoting t))
+
+;; D-mode for d-programming language
+(add-to-list 'auto-mode-alist '("\\.d\\'" . d-mode))
