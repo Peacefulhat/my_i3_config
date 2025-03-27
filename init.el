@@ -1,3 +1,6 @@
+;;eldoc mode
+(global-eldoc-mode 1)
+
 
 ;;disable tool bar.
 (tool-bar-mode 0)
@@ -59,11 +62,12 @@
  '(custom-safe-themes
    '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
      default))
- '(display-line-numbers-type 't);; 't,can be relative or visual for other style of line number type.
+ '(display-line-numbers-type 't)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(company d-mode gruber-darker-theme magit move-text multiple-cursors
-	     nasm-mode php-mode web-mode))
+   '(ace-window cfrs company d-mode gruber-darker-theme ht hydra magit
+		move-text multiple-cursors nasm-mode pfuture php-eldoc
+		php-mode treemacs web-mode))
  '(warning-suppress-types '((native-compiler))))
 
 ;; company mode
@@ -73,9 +77,7 @@
 
 
 ;; mulitple cursor
-;;(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-;;(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
 (global-set-key (kbd "C-c C-c") 'mc/edit-lines)
 (global-set-key (kbd "C->")         'mc/mark-next-like-this)
 (global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
@@ -92,8 +94,8 @@
 ;; nasm mode for .asm files
 
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
-;; dired-jump mode
-(global-set-key (kbd "C-c d") 'dired-jump)
+
+
 ;;php-mode
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 
@@ -107,3 +109,12 @@
 
 ;; D-mode for d-programming language
 (add-to-list 'auto-mode-alist '("\\.d\\'" . d-mode))
+
+
+
+;; treemacs, visual file navigation
+(global-set-key (kbd "C-c d") #'treemacs)
+(setq treemacs-width 30)  ;; Set the width of the sidebar
+(setq treemacs-follow-mode t)  ;; Automatically follow the currently opened file
+(setq treemacs-filewatch-mode t) ;; Watch for file changes
+
