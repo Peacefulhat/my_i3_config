@@ -112,9 +112,5 @@
 
 
 
-;; treemacs, visual file navigation
-(global-set-key (kbd "C-c d") #'treemacs)
-(setq treemacs-width 30)  ;; Set the width of the sidebar
-(setq treemacs-follow-mode t)  ;; Automatically follow the currently opened file
-(setq treemacs-filewatch-mode t) ;; Watch for file changes
+
 
