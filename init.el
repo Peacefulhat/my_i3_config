@@ -62,11 +62,11 @@
  '(custom-safe-themes
    '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
      default))
- '(display-line-numbers-type 't)
+ '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(ace-window cfrs company d-mode gruber-darker-theme ht hydra magit
-		move-text multiple-cursors nasm-mode pfuture php-eldoc
+   '(company gruber-darker-theme magit
+		move-text multiple-cursors nasm-mode php-eldoc
 		php-mode treemacs web-mode))
  '(warning-suppress-types '((native-compiler))))
 
@@ -107,8 +107,6 @@
         web-mode-enable-auto-closing t
         web-mode-enable-auto-quoting t))
 
-;; D-mode for d-programming language
-(add-to-list 'auto-mode-alist '("\\.d\\'" . d-mode))
 
 
 
