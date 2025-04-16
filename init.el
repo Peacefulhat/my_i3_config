@@ -1,6 +1,11 @@
 ;;eldoc mode
 (global-eldoc-mode 1)
 
+;;Tab to spaces
+(setq-default indent-tabs-mode nil) 
+(setq-default tab-width 4)          
+(add-hook 'prog-mode-hook (lambda () (setq tab-width 4)))
+(setq python-indent-offset 4)
 
 ;;disable tool bar.
 (tool-bar-mode 0)
