@@ -1,63 +1,102 @@
-;;eldoc mode
-(global-eldoc-mode 1)
-
-;;Tab to spaces
-(setq-default indent-tabs-mode nil) 
-(setq-default tab-width 4)          
-(add-hook 'prog-mode-hook (lambda () (setq tab-width 4)))
-(setq python-indent-offset 4)
-
-;;disable tool bar.
-(tool-bar-mode 0)
-
-;; disable menu bar.
-(menu-bar-mode 0)
-
-;; disable scroll bar.
-(scroll-bar-mode 0)
-
-;; disable border
-(fringe-mode 0)
-
-;; enable global line number.
-(global-display-line-numbers-mode 1)
-
-;; enable ido mode.
-(ido-mode 1)
-(ido-everywhere 1)
-
-;; set font size
+;; My UI Changes
+(tool-bar-mode 0)                 ;; Disable tool bar
+(menu-bar-mode 0)                 ;; Disable menu bar
+(scroll-bar-mode 0)               ;; Disable scroll bar
+(fringe-mode 0)                   ;; Disable fringe (border area)
+(global-display-line-numbers-mode 1)  ;; Enable line numbers globally
+(setq display-line-numbers-type 'relative)
 (set-face-attribute 'default nil :height 170)
 
-;; Disable backup files
+;; No backup or autosave files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
+;; Tabs to spaces
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq python-indent-offset 4)
+(add-hook 'prog-mode-hook (lambda () (setq tab-width 4)))
+
+;; Line/column info
+(column-number-mode 1)
+
+;; Enable IDO 
+(ido-mode 1)  
+(ido-everywhere 1)
+
+;; Package setup
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
-;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(setq package-archives
+      '(("melpa" . "https://melpa.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
 
-;; extesion for ido.
-(load "~/smex/smex.el")
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
+;; Ensure use-package is installed
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t)
 
-;;(column-number-mode (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(gruber-darker))
- '(package-selected-packages '(gruber-darker-theme))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; gruber-darker-theme (by Mr. Tsoding)
+(use-package gruber-darker-theme
+  :config
+  (load-theme 'gruber-darker t))
+
+;; Smex
+(use-package smex
+  :config
+  (smex-initialize)
+  (global-set-key (kbd "M-x") 'smex))
+
+;; Company mode (autocomplete)
+(use-package company
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
+  (global-company-mode 1))
+
+;; Multiple cursors
+(use-package multiple-cursors
+  :bind
+  (("C-c C-c" . mc/edit-lines)
+   ("C->"     . mc/mark-next-like-this)
+   ("C-<"     . mc/mark-previous-like-this)
+   ("C-c C-<" . mc/mark-all-like-this)
+   ("C-\""    . mc/skip-to-next-like-this)
+   ("C-:"     . mc/skip-to-previous-like-this)))
+
+;; Move-text
+(use-package move-text
+  :config
+  (move-text-default-bindings))
+
+;; Eldoc
+(global-eldoc-mode 1)  
+
+;; C / ASM: associate files with modes
+(use-package nasm-mode
+  :mode ("\\.asm\\'" . nasm-mode))
+
+(use-package php-mode
+  :mode ("\\.php\\'" . php-mode))
+
+(use-package php-eldoc
+  :hook (php-mode . php-eldoc-enable))
+
+(use-package web-mode
+  :mode ("\\.blade\\.php\\'" . web-mode)
+  :config
+  (setq web-mode-enable-auto-pairing t
+        web-mode-enable-auto-closing t
+        web-mode-enable-auto-quoting t))
+
+;; quick manpage lookup under cursor
+(global-set-key (kbd "C-c m") (lambda ()
+  (interactive)
+  (man (current-word))))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -70,50 +109,13 @@
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(company gruber-darker-theme magit
-		move-text multiple-cursors nasm-mode php-eldoc
-		php-mode treemacs web-mode))
+   '(company gruber-darker-theme magit move-text multiple-cursors
+             nasm-mode php-eldoc php-mode smex treemacs web-mode))
  '(warning-suppress-types '((native-compiler))))
 
-;; company mode
-(global-company-mode 1)
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 3)
-
-
-;; mulitple cursor
-
-(global-set-key (kbd "C-c C-c") 'mc/edit-lines)
-(global-set-key (kbd "C->")         'mc/mark-next-like-this)
-(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
-(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
-(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
-
-
-;; move-text
-(global-set-key (kbd "M-n") 'move-text-down)
-(global-set-key (kbd "M-p") 'move-text-up)
-
-
-;; nasm mode for .asm files
-
-(add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
-
-
-;;php-mode
-(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
-
-(use-package web-mode
-  :ensure t
-  :mode ("\\.blade\\.php\\'" . web-mode)
-  :config
-  (setq web-mode-enable-auto-pairing t
-        web-mode-enable-auto-closing t
-        web-mode-enable-auto-quoting t))
-
-
-
-
-
-
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
