@@ -69,9 +69,9 @@
 
 ;; Move-text
 (use-package move-text
-  :config
-  (move-text-default-bindings))
-
+  :bind
+  (("M-n" . move-text-down)
+   ("M-p" . move-text-up)))
 ;; Eldoc
 (global-eldoc-mode 1)  
 
