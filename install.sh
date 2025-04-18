@@ -2,8 +2,6 @@
 file=$1
 
 ./install_pkg.sh $file
-echo"Installing smex..."
-git clone https://github.com/nonsequitur/smex.git
 
 echo "Installing yay..."
 sudo pacman -S --needed git base-devel
