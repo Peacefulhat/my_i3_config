@@ -11,6 +11,29 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
+
+;; build function
+(defun my-run-build ()
+  "Run init_cl.bat and build.bat in a shell."
+  (interactive)
+  (let ((default-directory "D:/HandMadeHero/src/")) ;; <-- Important
+    (shell-command "init_cl.bat && build.bat")))
+
+;; init and build using cl
+(global-set-key (kbd "C-c C-v") 'my-run-build)
+
+;; run app in visual studio
+(defun my-run-app ()
+  "Open the built executable in Visual Studio."
+  (interactive)
+  (let ((default-directory "D:/HandMadeHero/src/"))
+    (start-process "devenv-run" nil
+                   "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/devenv.exe"
+                   "../build/win32_handmade.exe")))
+;;run in visual studio
+(global-set-key (kbd "C-c C-r") 'my-run-app)
+
+
 ;; Tabs to spaces
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -108,9 +131,7 @@
      default))
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
- '(package-selected-packages
-   '(company gruber-darker-theme magit move-text multiple-cursors
-             nasm-mode php-eldoc php-mode smex treemacs web-mode))
+ '(package-selected-packages nil)
  '(warning-suppress-types '((native-compiler))))
 
 (custom-set-faces
