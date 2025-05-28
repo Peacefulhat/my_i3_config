@@ -6,33 +6,11 @@
 (global-display-line-numbers-mode 1)  ;; Enable line numbers globally
 (setq display-line-numbers-type 'relative)
 (set-face-attribute 'default nil :height 170)
+(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
 
 ;; No backup or autosave files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
-
-
-;; build function
-(defun my-run-build ()
-  "Run init_cl.bat and build.bat in a shell."
-  (interactive)
-  (let ((default-directory "D:/HandMadeHero/src/")) ;; <-- Important
-    (shell-command "init_cl.bat && build.bat")))
-
-;; init and build using cl
-(global-set-key (kbd "C-c C-v") 'my-run-build)
-
-;; run app in visual studio
-(defun my-run-app ()
-  "Open the built executable in Visual Studio."
-  (interactive)
-  (let ((default-directory "D:/HandMadeHero/src/"))
-    (start-process "devenv-run" nil
-                   "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/devenv.exe"
-                   "../build/win32_handmade.exe")))
-;;run in visual studio
-(global-set-key (kbd "C-c C-r") 'my-run-app)
-
 
 ;; Tabs to spaces
 (setq-default indent-tabs-mode nil)
@@ -95,8 +73,20 @@
   :bind
   (("M-n" . move-text-down)
    ("M-p" . move-text-up)))
+
 ;; Eldoc
 (global-eldoc-mode 1)  
+
+
+;; go-mode
+(use-package go-mode
+  :mode ("\\.go\\'" . go-mode))
+
+;; go-eldoc
+(use-package go-eldoc
+  :init
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
+
 
 ;; C / ASM: associate files with modes
 (use-package nasm-mode
