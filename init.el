@@ -6,7 +6,7 @@
 (global-display-line-numbers-mode 1)  ;; Enable line numbers globally
 (setq display-line-numbers-type 'relative)
 (set-face-attribute 'default nil :height 170)
-(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
+(add-hook 'dired-mode-hook (lambda () (dired-hIde-details-mode 1)))
 
 ;; No backup or autosave files
 (setq make-backup-files nil)
@@ -109,6 +109,24 @@
 (global-set-key (kbd "C-c m") (lambda ()
   (interactive)
   (man (current-word))))
+
+;;quick program run under cursor using emacs.
+
+(global-set-key (kbd "C-c r")
+  (lambda ()
+    (interactive)
+    (let* ((arg (thing-at-point 'word t))
+           (program (read-shell-command "Run program: "))
+           (cmd (concat program " " arg)))
+      (compile cmd))))
+
+(require 'ansi-color)
+(defun my/apply-ansi-color-to-compilation-buffer ()
+  "Apply ANSI colors to the compilation buffer."
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+(add-hook 'compilation-filter-hook #'my/apply-ansi-color-to-compilation-buffer)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
