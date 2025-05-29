@@ -6,7 +6,7 @@
 (global-display-line-numbers-mode 1)  ;; Enable line numbers globally
 (setq display-line-numbers-type 'relative)
 (set-face-attribute 'default nil :height 170)
-(add-hook 'dired-mode-hook (lambda () (dired-hIde-details-mode 1)))
+(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
 
 ;; No backup or autosave files
 (setq make-backup-files nil)
