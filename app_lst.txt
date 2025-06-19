@@ -37,3 +37,4 @@ qbittorrent
 rofi
 7zip
 nasm
+vlc
