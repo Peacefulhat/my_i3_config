@@ -218,7 +218,7 @@ default_border pixel 2
 
 #gaps outside and inside of windows
 gaps inner 5
-gaps outer 11
+gaps outer 9
 
 #polkit agent
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 & disown
