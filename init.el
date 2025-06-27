@@ -75,9 +75,24 @@
    ("M-p" . move-text-up)))
 
 ;; Eldoc
-(global-eldoc-mode 1)  
+(global-eldoc-mode 1)
+
+;; Simp-C mode
+(add-to-list 'load-path "~/.emacs.d/.emacs.local/")
+
+(require 'simpc-mode)
+
+(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
+
+(add-to-list 'auto-mode-alist '("\\.[b]\\'" . simpc-mode))
 
 
+
+
+;;rust mode
+(use-package rust-mode
+  :mode ("\\.rs\\'" . rust-mode))
+  
 ;; go-mode
 (use-package go-mode
   :mode ("\\.go\\'" . go-mode))
@@ -139,7 +154,9 @@
      default))
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(company go-eldoc gruber-darker-theme move-text multiple-cursors
+             nasm-mode php-eldoc php-mode rust-mode smex web-mode))
  '(warning-suppress-types '((native-compiler))))
 
 (custom-set-faces
