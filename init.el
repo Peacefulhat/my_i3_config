@@ -21,6 +21,16 @@
 ;; Line/column info
 (column-number-mode 1)
 
+;; emacs cursor fix windows
+;;(setq w32-use-visible-system-caret nil)
+;;(setq w32-pass-multimedia-buttons-to-system nil)
+;;(setq w32-recognize-altgr nil)
+;;(blink-cursor-mode -1)
+;;(setq-default cursor-type 'box)
+;; frame font change
+;;(set-frame-font "Consolas-17" t t)
+
+
 ;; Enable IDO 
 (ido-mode 1)  
 (ido-everywhere 1)
