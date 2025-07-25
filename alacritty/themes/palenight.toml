@@ -1,0 +1,27 @@
+# Palenight Theme
+
+[colors.primary]
+background = "#292d3e"
+foreground = "#a6accd"
+cursor     = "#ff6f61"
+
+[colors.normal]
+black   = "#292d3e"
+red     = "#ff6f61"
+green   = "#98be65"
+yellow  = "#da8548"
+blue    = "#51afef"
+magenta = "#c678dd"
+cyan    = "#46d9ff"
+white   = "#a6accd"
+
+[colors.bright]
+black   = "#5b5d7a"
+red     = "#ff6f61"
+green   = "#98be65"
+yellow  = "#da8548"
+blue    = "#51afef"
+magenta = "#c678dd"
+cyan    = "#46d9ff"
+white   = "#ffffff"
+

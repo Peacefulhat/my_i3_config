@@ -25,6 +25,7 @@ gvfs-mtp
 ntfs-3g
 emacs
 ttf-fira-code
+ttf-fira-code-nerd
 neovim
 polkit-kde-agent
 ranger

@@ -1,0 +1,27 @@
+# Material Dark Theme
+
+[colors.primary]
+background = "#121212"
+foreground = "#eeeeee"
+cursor     = "#ffcc00"
+
+[colors.normal]
+black   = "#121212"
+red     = "#f44336"
+green   = "#4caf50"
+yellow  = "#ffeb3b"
+blue    = "#2196f3"
+magenta = "#9c27b0"
+cyan    = "#00bcd4"
+white   = "#eeeeee"
+
+[colors.bright]
+black   = "#757575"
+red     = "#f44336"
+green   = "#4caf50"
+yellow  = "#ffeb3b"
+blue    = "#2196f3"
+magenta = "#9c27b0"
+cyan    = "#00bcd4"
+white   = "#ffffff"
+
