@@ -96,6 +96,11 @@
 
 (add-to-list 'auto-mode-alist '("\\.[b]\\'" . simpc-mode))
 
+;;C3 mode
+;; download the emacs legacy c3-mode.el from c3lang github
+
+(require 'c3-mode)
+(add-to-list 'auto-mode-alist '("\\.[c3]\\'" . c3-mode))
 
 
 
