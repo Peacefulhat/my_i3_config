@@ -5,6 +5,9 @@ file_path=$1
 
 while read -r line; do
     if [[ ${line:0:1} == "#" ]]; then
+        # out=$(echo "$line" | cut -b 2-) other way to that
+        out="${line:1}";
+        echo "$out skipping..."
         continue
     fi
     echo "Checking package: $line"
