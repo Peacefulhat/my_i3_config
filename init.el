@@ -77,7 +77,7 @@
 ;; Eldoc
 (global-eldoc-mode 1)
 ;; local .el files
-(add-to-list 'load-path "~/.emacs.d/.emacs.local/")
+(add-to-list 'load-path "~/.emacs.d/emacs.local/")
 
 ;; Simp-C mode
 (require 'simpc-mode)
