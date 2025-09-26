@@ -21,16 +21,6 @@
 ;; Line/column info
 (column-number-mode 1)
 
-;; emacs cursor fix windows
-;;(setq w32-use-visible-system-caret nil)
-;;(setq w32-pass-multimedia-buttons-to-system nil)
-;;(setq w32-recognize-altgr nil)
-;;(blink-cursor-mode -1)
-;;(setq-default cursor-type 'box)
-;; frame font change
-;;(set-frame-font "Consolas-17" t t)
-
-
 ;; Enable IDO 
 (ido-mode 1)  
 (ido-everywhere 1)
@@ -86,23 +76,21 @@
 
 ;; Eldoc
 (global-eldoc-mode 1)
-
-;; Simp-C mode
+;; local .el files
 (add-to-list 'load-path "~/.emacs.d/.emacs.local/")
 
+;; Simp-C mode
 (require 'simpc-mode)
-
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
-
 (add-to-list 'auto-mode-alist '("\\.[b]\\'" . simpc-mode))
 
-;;C3 mode
-;; download the emacs legacy c3-mode.el from c3lang github
 
 (require 'c3-mode)
-(add-to-list 'auto-mode-alist '("\\.[c3]\\'" . c3-mode))
+;;(add-to-list 'auto-mode-alist '("\\.[c3]\\'" . c3-mode))
 
-
+;; odin mode
+(require 'odin-mode)
+(add-to-list 'auto-mode-alist '("\\.[odin]\\'" . odin-mode))
 
 ;;rust mode
 (use-package rust-mode
@@ -121,6 +109,26 @@
 ;; C / ASM: associate files with modes
 (use-package nasm-mode
   :mode ("\\.asm\\'" . nasm-mode))
+
+
+(use-package gradle-mode
+  :ensure t
+  :hook (java-mode . gradle-mode))
+
+
+(use-package android-mode
+  :ensure t
+  :config
+  (setq android-mode-sdk-dir (expand-file-name "~/Android")))
+
+;; kotlin
+
+(use-package kotlin-mode
+  :mode (("\\.kt\\'"   . kotlin-mode)
+         ("\\.kts\\'"  . kotlin-mode)
+         ("\\.ktm\\'"  . kotlin-mode)
+         ("\\.ktscript\\'" . kotlin-mode)))
+
 
 (use-package php-mode
   :mode ("\\.php\\'" . php-mode))
@@ -169,9 +177,7 @@
      default))
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
- '(package-selected-packages
-   '(company go-eldoc gruber-darker-theme move-text multiple-cursors
-             nasm-mode php-eldoc php-mode rust-mode smex web-mode))
+ '(package-selected-packages nil)
  '(warning-suppress-types '((native-compiler))))
 
 (custom-set-faces
