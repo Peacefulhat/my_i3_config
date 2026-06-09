@@ -1,6 +1,5 @@
 i3
 xorg
-kitty
 pipewire
 pipewire-alsa
 pipewire-audio
