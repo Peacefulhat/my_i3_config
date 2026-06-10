@@ -1,5 +1,6 @@
 i3
 xorg
+alacritty
 pipewire
 pipewire-alsa
 pipewire-audio
@@ -31,7 +32,6 @@ ranger
 feh
 btop
 ufw
-obsidian
 xclip
 qbittorrent
 rofi
