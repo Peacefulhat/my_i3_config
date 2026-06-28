@@ -14,7 +14,7 @@ set $win Mod4
 set $alt Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Fira Code 14
+font pango:Fira Code 13
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -24,6 +24,11 @@ font pango:Fira Code 14
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 
 exec --no-startup-id dex --autostart --environment i3
+
+#audio realated thing for gentoo openrc not for systemd
+exec --no-startup-id pipewire
+exec --no-startup-id wireplumber
+exec --no-startup-id pipewire-pulse
 
 #Mod key not working fix, for red dragon k617
 exec_always --no-startup-id xmodmap ~/.Xmodmap
@@ -209,7 +214,9 @@ bar {
       	mode hide 
         position bottom
         status_command i3status
-        modifier none  
+        modifier none 
+        # for gentoo
+        font pango:Fira Code 12
   }
 
 #kill polybar
@@ -227,7 +234,10 @@ gaps outer 5
 
 
 #polkit agent
-exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 & disown
+#arch
+#exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 & disown
+#gentoo
+exec --no-startup-id /usr/libexec/polkit-kde-authentication-agent-1
 
 #backgroudn image
-exec feh --bg-fill ~/Wallpapers/1.jpg
+exec feh --bg-fill ~/.config/Wallpapers/1.jpg
