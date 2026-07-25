@@ -5,8 +5,11 @@
 (fringe-mode 0)                   ;; Disable fringe (border area)
 (global-display-line-numbers-mode 1)  ;; Enable line numbers globally
 (setq display-line-numbers-type 'relative)
-(set-face-attribute 'default nil :height 170)
-(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
+(set-face-attribute 'default nil :height 160)
+(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 0)))
+
+;; keysound disable
+(setq ring-bell-function 'ignore)
 
 ;; No backup or autosave files
 (setq make-backup-files nil)
@@ -18,6 +21,8 @@
 (setq python-indent-offset 4)
 (add-hook 'prog-mode-hook (lambda () (setq tab-width 4)))
 
+;; font
+(set-frame-font "Fira Code" t t)
 ;; Line/column info
 (column-number-mode 1)
 
@@ -68,6 +73,7 @@
    ("C-\""    . mc/skip-to-next-like-this)
    ("C-:"     . mc/skip-to-previous-like-this)))
 
+
 ;; Move-text
 (use-package move-text
   :bind
@@ -84,9 +90,21 @@
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 (add-to-list 'auto-mode-alist '("\\.[b]\\'" . simpc-mode))
 
+;; download formatter system wide dev-util/astyle on gentoo
+;; for windows put astyle.exe to your path env 
+;; astyle-formatter
+(defun astyle-buffer ()
+  (interactive)
+  (let ((saved-line-number (line-number-at-pos)))
+    (shell-command-on-region
+     (point-min)
+     (point-max)
+     "astyle --style=kr"
+     nil
+     t)
+    (goto-line saved-line-number)))
 
-(require 'c3-mode)
-;;(add-to-list 'auto-mode-alist '("\\.[c3]\\'" . c3-mode))
+(global-set-key (kbd "C-c i") #'astyle-buffer)
 
 ;; odin mode
 (require 'odin-mode)
@@ -177,7 +195,11 @@
      default))
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(android-mode astyle company go-eldoc gradle-mode gruber-darker-theme
+		  kotlin-mode magit move-text multiple-cursors
+		  nasm-mode php-eldoc php-mode rfc-mode rust-mode smex
+		  tuareg web-mode))
  '(warning-suppress-types '((native-compiler))))
 
 (custom-set-faces
