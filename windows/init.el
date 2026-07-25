@@ -4,7 +4,7 @@
 (scroll-bar-mode 0)               ;; Disable scroll bar
 (fringe-mode 0)                   ;; Disable fringe (border area)
 (global-display-line-numbers-mode 1)  ;; Enable line numbers globally
-(setq display-line-numbers-type 'relative)
+;;(setq display-line-numbers-type 'relative)
 (set-face-attribute 'default nil :height 170)
 (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
 
@@ -17,6 +17,7 @@
 (setq-default tab-width 4)
 (setq python-indent-offset 4)
 (add-hook 'prog-mode-hook (lambda () (setq tab-width 4)))
+
 
 ;; Line/column info
 (column-number-mode 1)
@@ -35,10 +36,10 @@
 (defun my/debug-handmade-in-msvc ()
   (interactive)
   (let* ((exe-path "C:/HandMadeHero/build/win32_handmade.exe")
-         (devenv-path "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/devenv.exe"))
-   (cond
-    ((not (file-exists-p devenv-path))
-     (message "Visual Studio (devenv.exe) not found: %s" devenv-path))
+         (devenv-path "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe"))
+    (cond
+     ((not (file-exists-p devenv-path))
+      (message "Visual Studio (devenv.exe) not found: %s" devenv-path))
      ((not (file-exists-p exe-path))
       (message "Executable not found: %s" exe-path))
      (t
@@ -53,7 +54,7 @@
 (defun my/original-debug-handmade-in-msvc ()
   (interactive)
   (let* ((exe-path "C:/handmade/build/win32_handmade.exe")
-         (devenv-path "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/devenv.exe"))
+         (devenv-path "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe"))
     (cond
      ((not (file-exists-p devenv-path))
       (message "Visual Studio (devenv.exe) not found: %s" devenv-path))
@@ -72,6 +73,49 @@
 (global-set-key (kbd "C-c C-t") #'my/original-debug-handmade-in-msvc)
 ;; my code.
 (global-set-key (kbd "C-c C-r") #'my/debug-handmade-in-msvc)
+
+;; for different projects
+(defun my/msvc-chip8 ()
+  (interactive)
+  (let* ((exe-path "D:/ch8/build/chip-8.exe")
+         (devenv-path "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe"))
+    (cond
+     ((not (file-exists-p devenv-path))
+      (message "Visual Studio (devenv.exe) not found: %s" devenv-path))
+     ((not (file-exists-p exe-path))
+      (message "Executable not found: %s" exe-path))
+     (t
+      ;; Use `w32-shell-execute` instead of `start-process`
+      ;; This avoids the command/quoting issues completely.
+      (w32-shell-execute
+       "open"
+       devenv-path
+       (format "/debugexe \"%s\"" exe-path))
+      (message "Visual Studio launched for debugging.")))))
+
+(global-set-key (kbd "C-c C-u") #'my/msvc-chip8)
+
+
+(defun my/msvc-projects ()
+  (interactive)
+  (let* ((exe-path "D:/ProgrammingIsFun/C/QuickDSA/build/main.exe")
+         (devenv-path "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe"))
+    (cond
+     ((not (file-exists-p devenv-path))
+      (message "Visual Studio (devenv.exe) not found: %s" devenv-path))
+     ((not (file-exists-p exe-path))
+      (message "Executable not found: %s" exe-path))
+     (t
+      ;; Use `w32-shell-execute` instead of `start-process`
+      ;; This avoids the command/quoting issues completely.
+      (w32-shell-execute
+       "open"
+       devenv-path
+       (format "/debugexe \"%s\"" exe-path))
+      (message "Visual Studio launched for debugging.")))))
+
+(global-set-key (kbd "C-c C-y") #'my/msvc-projects)
+
 ;; Enable IDO 
 (ido-mode 1)  
 (ido-everywhere 1)
@@ -141,7 +185,7 @@
 ;;rust mode
 (use-package rust-mode
   :mode ("\\.rs\\'" . rust-mode))
-  
+
 ;; go-mode
 (use-package go-mode
   :mode ("\\.go\\'" . go-mode))
@@ -171,18 +215,18 @@
 
 ;; quick manpage lookup under cursor
 (global-set-key (kbd "C-c m") (lambda ()
-  (interactive)
-  (man (current-word))))
+                                (interactive)
+                                (man (current-word))))
 
 ;;quick program run under cursor using emacs.
 
 (global-set-key (kbd "C-c r")
-  (lambda ()
-    (interactive)
-    (let* ((arg (thing-at-point 'word t))
-           (program (read-shell-command "Run program: "))
-           (cmd (concat program " " arg)))
-      (compile cmd))))
+                (lambda ()
+                  (interactive)
+                  (let* ((arg (thing-at-point 'word t))
+                         (program (read-shell-command "Run program: "))
+                         (cmd (concat program " " arg)))
+                    (compile cmd))))
 
 (require 'ansi-color)
 (defun my/apply-ansi-color-to-compilation-buffer ()
@@ -201,12 +245,11 @@
  '(custom-safe-themes
    '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
      default))
- '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(company go-eldoc gruber-darker-theme magit move-text
-             multiple-cursors nasm-mode php-eldoc php-mode rust-mode
-             smex web-mode))
+   '(astyle company go-eldoc gruber-darker-theme magit move-text
+	    multiple-cursors nasm-mode php-eldoc php-mode rust-mode
+	    smex web-mode))
  '(warning-suppress-types '((native-compiler))))
 
 (custom-set-faces
