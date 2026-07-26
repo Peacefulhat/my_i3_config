@@ -125,6 +125,12 @@ bindsym $win+s layout stacking
 bindsym $win+w layout tabbed
 bindsym $win+e layout toggle split
 
+#Color for border and stacked windows list.
+client.focused          #555555 #555555 #ffffff #555555 #555555
+client.focused_inactive #444444 #444444 #ffffff #444444 #444444
+client.unfocused        #333333 #333333 #cccccc #333333 #333333
+client.urgent           #900000 #900000 #ffffff #900000 #900000
+
 # toggle tiling / floating
 bindsym $win+Shift+space floating toggle
 
