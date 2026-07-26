@@ -236,8 +236,8 @@ bar {
 default_border pixel 2
 
 #gaps outside and inside of windows
-gaps inner 5
-gaps outer 5
+gaps inner 4
+gaps outer 0
 
 
 #polkit agent
