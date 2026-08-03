@@ -1,0 +1,73 @@
+Movement:
+(normal mode)
+j:               move down by one line
+k:               move up by one line
+h:               move one char backward
+l:               move one char forward
+w:               move one word forward(moves the cursor to the start of word)
+e:               move the cursor to the end of word(also can be used for moving forward by one word)
+b:               move one word backward
+x:               delete a char (from left to right) 
+dw:              delete a word (from left to right)
+d$:              to delete to the end of line
+db:              delete a word in backwoard direction by a word
+$:               move to end of line
+0:               move to start of line
+u:               undo
+CTRL+r:          redo
+p:               put previously deleted text after the cursor
+rx:              replace the character at cursor with x
+G:               to move you to the bottom of the file
+gg:              to move you to the top of the file
+<line number> G: move to the line number
+
+Search:
+/<word>: search the word in forward direction, press Enter to move the cursor to the first found occurence.
+?<word>: search the word in backward direction, press Enter to move the cursor to the first found occurence.
+-> press n to search in forward direction for the word
+-> press N to search in backward direction
+
+Matching Parentheses Search:
+%: the cursor will move to the matching parenthesis or bracket
+useful for debugging a program with unmatched parentheses
+
+Query Replace:
+:s/old/new/g:     edit the old with new on a line
+:%s/old/new/g:    edit the old with new on a file
+:%s/old/new/gc:   edit the old with new on a file with a prompt weather to substitute or not.
+:#,#s/old/new/g:  edit the old with new in between #,#(these areline numbers eg: 3,5s/https/ftp/g
+
+Executre External Command:
+:!<command>: executes the external command
+
+(insert mode)
+i:   to enter insert mode on the cursor
+a:   to enter insert mode after the cursor
+A:   move the cursor to end of line and to enter the insert mode
+:wq: write and quite (normal mode command)
+
+Selecting The Text:
+(visual mode)
+v: to select the text and d to delete the selected text
+
+Copy And Pasting:
+(visual mode)
+y: to yank the selected text
+p: to paste the selected text
+
+Operators and motions with count:
+syntax: <operator>[count]<motion>
+
+example:
+    d -> is the delete operator
+    motion:(w,$,b)-> is what the operator will operate on
+example:
+    count and motion:
+    2w: move to word forward
+
+example:
+    multiline delete:
+    2d$: delete two line
+example:
+    change operator:
+    cw: delete a word and place you in insert mode.
