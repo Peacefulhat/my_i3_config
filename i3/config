@@ -26,9 +26,7 @@ font pango:Fira Code 13
 exec --no-startup-id dex --autostart --environment i3
 
 #audio realated thing for gentoo openrc
-exec --no-startup-id pipewire
 exec --no-startup-id wireplumber
-exec --no-startup-id pipewire-pulse
 exec --no-startup-id nm-applet
 
 #Mod key not working fix, for red dragon k617
@@ -125,12 +123,6 @@ bindsym $win+s layout stacking
 bindsym $win+w layout tabbed
 bindsym $win+e layout toggle split
 
-#Color for border and stacked windows list.
-client.focused          #555555 #555555 #ffffff #555555 #555555
-client.focused_inactive #444444 #444444 #ffffff #444444 #444444
-client.unfocused        #333333 #333333 #cccccc #333333 #333333
-client.urgent           #900000 #900000 #ffffff #900000 #900000
-
 # toggle tiling / floating
 bindsym $win+Shift+space floating toggle
 
@@ -180,6 +172,11 @@ bindsym $win+Shift+8 move container to workspace number $ws8
 bindsym $win+Shift+9 move container to workspace number $ws9
 bindsym $win+Shift+0 move container to workspace number $ws10
 
+client.focused          #555555 #555555 #ffffff #555555 #555555
+client.focused_inactive #444444 #444444 #ffffff #444444 #444444
+client.unfocused        #333333 #333333 #cccccc #333333 #333333
+client.urgent           #900000 #900000 #ffffff #900000 #900000
+
 # reload the configuration file
 bindsym $win+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -189,27 +186,27 @@ bindsym $win+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+bindsym j resize shrink width 10 px or 10 ppt
+bindsym k resize grow height 10 px or 10 ppt
+bindsym l resize shrink height 10 px or 10 ppt
+bindsym semicolon resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+# same bindings, but for the arrow keys
+bindsym Left resize shrink width 10 px or 10 ppt
+bindsym Down resize grow height 10 px or 10 ppt
+bindsym Up resize shrink height 10 px or 10 ppt
+bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $win+r
-        bindsym Return mode "fullscreen"
-        bindsym Escape mode "default"
-        bindsym $win+r mode "default"
+# back to normal: Enter or Escape or $win+r
+bindsym Return mode "fullscreen"
+bindsym Escape mode "default"
+bindsym $win+r mode "default"
 }
 
 bindsym $win+r mode "resize"
@@ -218,13 +215,13 @@ bindsym $win+r mode "resize"
 # finds out, if available)
 bindsym Control+Escape bar mode toggle
 bar {
-      	mode hide 
-        position bottom
-        status_command i3status
-        modifier none 
-        # for gentoo
-        #font pango:Fira Code 12
-  }
+mode hide 
+position bottom
+status_command i3status
+modifier none 
+# for gentoo
+#font pango:Fira Code 12
+}
 
 #kill polybar
 #bindsym Control+Escape exec pkill polybar
