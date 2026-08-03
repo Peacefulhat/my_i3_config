@@ -3,6 +3,7 @@
 (menu-bar-mode 0)                 ;; Disable menu bar
 (scroll-bar-mode 0)               ;; Disable scroll bar
 (fringe-mode 0)                   ;; Disable fringe (border area)
+(global-hl-line-mode 1)           ;; enable horizontal bar
 (global-display-line-numbers-mode 1)  ;; Enable line numbers globally
 (setq display-line-numbers-type 'relative)
 (set-face-attribute 'default nil :height 160)
