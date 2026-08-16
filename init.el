@@ -9,6 +9,10 @@
 (set-face-attribute 'default nil :height 160)
 (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 0)))
 
+;; dired mode copy
+(setq dired-recursive-copies 'always)
+(setq dired-dwim-target t)
+
 ;; keysound disable
 (setq ring-bell-function 'ignore)
 
