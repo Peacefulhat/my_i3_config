@@ -245,4 +245,4 @@ gaps outer 0
 exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 
 #backgroudn image
-exec feh --bg-fill ~/.config/Wallpapers/1.jpg
+exec feh --bg-fill ~/.config/Wallpapers/wall.jpg
