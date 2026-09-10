@@ -6,7 +6,7 @@
 (global-display-line-numbers-mode 1)  ;; Enable line numbers globally
 ;;(setq display-line-numbers-type 'relative)
 (set-face-attribute 'default nil :height 170)
-(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
+
 
 ;; No backup or autosave files
 (setq make-backup-files nil)
@@ -71,6 +71,7 @@
 
 ;; cm code.
 (global-set-key (kbd "C-c C-t") #'my/original-debug-handmade-in-msvc)
+
 ;; my code.
 (global-set-key (kbd "C-c C-r") #'my/debug-handmade-in-msvc)
 
@@ -169,8 +170,6 @@
   (("M-n" . move-text-down)
    ("M-p" . move-text-up)))
 
-;; Eldoc
-(global-eldoc-mode 1)
 
 ;; Simp-C mode
 (add-to-list 'load-path "~/.emacs.d/.emacs.local/")
@@ -181,7 +180,6 @@
 (add-to-list 'exec-path "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64")
 
 
-
 ;;rust mode
 (use-package rust-mode
   :mode ("\\.rs\\'" . rust-mode))
@@ -190,28 +188,43 @@
 (use-package go-mode
   :mode ("\\.go\\'" . go-mode))
 
-;; go-eldoc
-(use-package go-eldoc
-  :init
-  (add-hook 'go-mode-hook 'go-eldoc-setup))
-
-
 ;; C / ASM: associate files with modes
 (use-package nasm-mode
   :mode ("\\.asm\\'" . nasm-mode))
 
-(use-package php-mode
-  :mode ("\\.php\\'" . php-mode))
+;; Rainbow mode for web and for any buffer(toggle it with C-c c)
+ 70 (use-package rainbow-mode
+ 71   :hook ((css-mode
+ 72           html-mode
+ 73           web-mode)
+ 74          . rainbow-mode)
+ 75   :bind
+ 76   ("C-c c" . rainbow-mode))
 
-(use-package php-eldoc
-  :hook (php-mode . php-eldoc-enable))
+;; emmet-mode
+ (use-package emmet-mode
+149   :ensure t
+150   :hook (web-mode . emmet-mode)
+151   :config
+152   (setq emmet-indent-after-insert nil
+153         emmet-indentation 2))
+;; web mode
+132 (use-package web-mode
+133   :ensure t
+134   :mode "\\.html?\\'"
+135   :mode "\\.css\\'"
+136   :mode "\\.phtml\\'"
+137   :mode "\\.tpl\\.php\\'"
+138   :mode "\\.[agj]sp\\'"
+139   :mode "\\.as[cp]x\\'"
+140   :mode "\\.erb\\'"
+141   :mode "\\.mustache\\'"
+142   :mode "\\.djhtml\\'"
+143   :config
+144   (setq web-mode-markup-indent-offser 2
+145         web-mode-css-indent-offset 2
+146         web-mode-code-indent-offset 2))
 
-(use-package web-mode
-  :mode ("\\.blade\\.php\\'" . web-mode)
-  :config
-  (setq web-mode-enable-auto-pairing t
-        web-mode-enable-auto-closing t
-        web-mode-enable-auto-quoting t))
 
 ;; quick manpage lookup under cursor
 (global-set-key (kbd "C-c m") (lambda ()
@@ -247,8 +260,8 @@
      default))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(astyle company go-eldoc gruber-darker-theme magit move-text
-	    multiple-cursors nasm-mode php-eldoc php-mode rust-mode
+   '(astyle company gruber-darker-theme magit move-text
+	    multiple-cursors nasm-mode rust-mode
 	    smex web-mode))
  '(warning-suppress-types '((native-compiler))))
 

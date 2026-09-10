@@ -3,16 +3,14 @@
 (menu-bar-mode 0)                 ;; Disable menu bar
 (scroll-bar-mode 0)               ;; Disable scroll bar
 (fringe-mode 0)                   ;; Disable fringe (border area)
-(global-hl-line-mode 1)           ;; enable horizontal bar
+(global-hl-line-mode 1)
 (global-display-line-numbers-mode 1)  ;; Enable line numbers globally
 (setq display-line-numbers-type 'relative)
 (set-face-attribute 'default nil :height 160)
 (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 0)))
-
 ;; dired mode copy
 (setq dired-recursive-copies 'always)
 (setq dired-dwim-target t)
-
 ;; keysound disable
 (setq ring-bell-function 'ignore)
 
@@ -68,6 +66,15 @@
   (setq company-minimum-prefix-length 3)
   (global-company-mode 1))
 
+;; Rainbow mode
+(use-package rainbow-mode
+  :hook ((css-mode
+          html-mode
+          web-mode)
+         . rainbow-mode)
+  :bind
+  ("C-c c" . rainbow-mode))
+
 ;; Multiple cursors
 (use-package multiple-cursors
   :bind
@@ -85,8 +92,7 @@
   (("M-n" . move-text-down)
    ("M-p" . move-text-up)))
 
-;; Eldoc
-(global-eldoc-mode 1)
+
 ;; local .el files
 (add-to-list 'load-path "~/.emacs.d/emacs.local/")
 
@@ -111,10 +117,6 @@
 
 (global-set-key (kbd "C-c i") #'astyle-buffer)
 
-;; odin mode
-(require 'odin-mode)
-(add-to-list 'auto-mode-alist '("\\.[odin]\\'" . odin-mode))
-
 ;;rust mode
 (use-package rust-mode
   :mode ("\\.rs\\'" . rust-mode))
@@ -123,48 +125,32 @@
 (use-package go-mode
   :mode ("\\.go\\'" . go-mode))
 
-;; go-eldoc
-(use-package go-eldoc
-  :init
-  (add-hook 'go-mode-hook 'go-eldoc-setup))
-
-
 ;; C / ASM: associate files with modes
 (use-package nasm-mode
   :mode ("\\.asm\\'" . nasm-mode))
 
-
-(use-package gradle-mode
-  :ensure t
-  :hook (java-mode . gradle-mode))
-
-
-(use-package android-mode
-  :ensure t
-  :config
-  (setq android-mode-sdk-dir (expand-file-name "~/Android")))
-
-;; kotlin
-
-(use-package kotlin-mode
-  :mode (("\\.kt\\'"   . kotlin-mode)
-         ("\\.kts\\'"  . kotlin-mode)
-         ("\\.ktm\\'"  . kotlin-mode)
-         ("\\.ktscript\\'" . kotlin-mode)))
-
-
-(use-package php-mode
-  :mode ("\\.php\\'" . php-mode))
-
-(use-package php-eldoc
-  :hook (php-mode . php-eldoc-enable))
-
 (use-package web-mode
-  :mode ("\\.blade\\.php\\'" . web-mode)
+  :ensure t
+  :mode "\\.html?\\'" 
+  :mode "\\.css\\'"
+  :mode "\\.phtml\\'"
+  :mode "\\.tpl\\.php\\'"
+  :mode "\\.[agj]sp\\'"
+  :mode "\\.as[cp]x\\'"
+  :mode "\\.erb\\'"
+  :mode "\\.mustache\\'"
+  :mode "\\.djhtml\\'"
   :config
-  (setq web-mode-enable-auto-pairing t
-        web-mode-enable-auto-closing t
-        web-mode-enable-auto-quoting t))
+  (setq web-mode-markup-indent-offser 2
+        web-mode-css-indent-offset 2
+        web-mode-code-indent-offset 2))
+
+(use-package emmet-mode
+  :ensure t
+  :hook (web-mode . emmet-mode)
+  :config
+  (setq emmet-indent-after-insert nil
+        emmet-indentation 2))
 
 ;; quick manpage lookup under cursor
 (global-set-key (kbd "C-c m") (lambda ()
@@ -201,10 +187,9 @@
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(android-mode astyle company go-eldoc gradle-mode gruber-darker-theme
-		  kotlin-mode magit move-text multiple-cursors
-		  nasm-mode php-eldoc php-mode rfc-mode rust-mode smex
-		  tuareg web-mode))
+   '(astyle company emmet-mode gruber-darker-theme magit move-text
+            multiple-cursors nasm-mode rainbow-mode rfc-mode rust-mode
+            smex tuareg web-mode))
  '(warning-suppress-types '((native-compiler))))
 
 (custom-set-faces
